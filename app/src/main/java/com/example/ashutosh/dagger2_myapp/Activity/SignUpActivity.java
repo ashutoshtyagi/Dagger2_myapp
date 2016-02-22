@@ -1,14 +1,10 @@
 package com.example.ashutosh.dagger2_myapp.Activity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
 import com.example.ashutosh.dagger2_myapp.Component.DaggerUserComponent;
-import com.example.ashutosh.dagger2_myapp.Component.UserComponent;
 import com.example.ashutosh.dagger2_myapp.Model.UserModel;
-import com.example.ashutosh.dagger2_myapp.Module.UserModule;
 import com.example.ashutosh.dagger2_myapp.R;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -17,11 +13,12 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import dagger.Provides;
 
 /**
  * Created by ashutosh on 7/1/16.
  */
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AbstractUserActivity {
 
     @Bind(R.id.et_username)
     @NotEmpty
@@ -36,8 +33,6 @@ public class SignUpActivity extends AppCompatActivity {
     @NotEmpty
     EditText emailEt;
 
-    private UserComponent userComponent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +43,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     @OnClick(R.id.b_sign_up)
     public void onClickSignUp() {
-        userComponent = DaggerUserComponent
-                .builder()
-                .build();
-
-        userComponent.inject(new UserModel(
-                usernameEt.getText().toString(),
+        UserModel userModel = new UserModel(usernameEt.getText().toString(),
                 emailEt.getText().toString(),
-                passwordEt.getText().toString())
-        );
-
-
+                passwordEt.getText().toString());
+        createUserComponent(userModel);
     }
 }

@@ -6,6 +6,7 @@ import android.content.Context;
 import com.example.ashutosh.dagger2_myapp.Component.DaggerMyApplicationComponent;
 import com.example.ashutosh.dagger2_myapp.Component.MyApplicationComponent;
 import com.example.ashutosh.dagger2_myapp.Module.MyApplicationModule;
+import com.example.ashutosh.dagger2_myapp.Module.NetworkModule;
 
 /**
  * Created by ashutosh on 7/1/16.
@@ -20,6 +21,7 @@ public class MyApplication extends Application {
 
         myApplicationComponent = DaggerMyApplicationComponent.builder()
                 .myApplicationModule(new MyApplicationModule(this))
+                .networkModule(new NetworkModule(this))
                 .build();
     }
 

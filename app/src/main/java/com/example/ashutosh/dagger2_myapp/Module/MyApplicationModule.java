@@ -1,14 +1,19 @@
 package com.example.ashutosh.dagger2_myapp.Module;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.ashutosh.dagger2_myapp.MyApplication;
 
+import java.io.File;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by ashutosh on 7/1/16.
@@ -26,5 +31,15 @@ public class MyApplicationModule {
     @Provides @Singleton
     SharedPreferences provideSharedPreferences() {
         return myApplication.getSharedPreferences(SHARED_PREFERENCE_KEY, Context.MODE_PRIVATE);
+    }
+
+    @Provides @Singleton
+    ContentValues provideContentValues() {
+        return new ContentValues();
+    }
+
+    @Provides @Singleton
+    Context provideApplicationContext() {
+        return myApplication.getApplicationContext();
     }
 }

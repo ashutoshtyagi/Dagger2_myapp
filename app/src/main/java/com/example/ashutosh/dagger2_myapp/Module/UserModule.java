@@ -12,16 +12,22 @@ import dagger.Provides;
 
 @Module
 public class UserModule {
-    /*private String username, emailAddress, password;
+    /*private String username, emailAddress, password;*/
+    UserModel userModel;
 
-    public UserModule(String username, String emailAddress, String password) {
+    /*public UserModule(String username, String emailAddress, String password) {
         this.username = username;
         this.emailAddress = emailAddress;
         this.password = password;
+    }*/
+
+    public UserModule(UserModel userModel) {
+        this.userModel = userModel;
     }
 
     @Provides @PerUser
     UserModel provideUserModelObject() {
-        return new UserModel(username, emailAddress, password);
-    }*/
+        return userModel;
+        /*return new UserModel(username, emailAddress, password);*/
+    }
 }

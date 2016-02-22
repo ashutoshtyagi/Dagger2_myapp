@@ -8,7 +8,6 @@ import javax.inject.Inject;
 public class UserModel {
     private String userName, emailAddress, password;
 
-    @Inject
     public UserModel(String userName, String emailAddress, String password) {
         this.userName = userName;
         this.emailAddress = emailAddress;

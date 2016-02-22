@@ -22,10 +22,11 @@ public class HomePageActivity extends Activity {
 
         MyApplication.getMyApplicationComponent(this).inject(this);
 
-        if (sharedPreferences.contains(LoginActivity.ACTIVE_USER_KEY)) {
+        startActivity(new Intent(this, SearchFormActivity.class));
+        /*if (sharedPreferences.contains(LoginActivity.ACTIVE_USER_KEY)) {
             startActivity(new Intent(this, SearchFormActivity.class));
         } else {
             startActivity(new Intent(this, SignUpActivity.class));
-        }
+        }*/
     }
 }

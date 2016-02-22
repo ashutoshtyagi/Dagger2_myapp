@@ -17,7 +17,5 @@ import dagger.Component;
         }
 )
 public interface UserComponent {
-    void inject(UserModel userModel);
-
-    UserModel userModel();
+        UserModel userModel();
 }
